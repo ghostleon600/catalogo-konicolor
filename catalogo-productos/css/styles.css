@@ -1,0 +1,286 @@
+:root {
+    --primary-color: rgb(236, 84, 14);
+    --secondary-color: rgb(189, 67, 11);
+    --background-color: #fff8f5;
+    --text-color: rgb(236, 84, 14);
+    --accent-color: #ff945e;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+header {
+    background-color: rgb(236, 84, 14);
+    box-shadow: 0 2px 5px rgba(252, 249, 247, 0.1);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+nav {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.menu a {
+    color: white;
+    text-decoration: none;
+    margin-left: 2rem;
+    transition: color 0.3s ease;
+    font-weight: 500;
+}
+
+.menu a:hover {
+    color: var(--background-color);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    height: 50px;
+    width: 50px;
+}
+
+.logo img {
+    height: 70px;
+    width: auto;
+    display: block;
+}
+
+main {
+    margin-top: 80px;
+}
+
+.hero {
+    text-align: center;
+    padding: 6rem 2rem;
+    background: rgb(189, 67, 11);
+    background-size: cover;
+    background-position: center;
+    color: white;
+    margin-bottom: 2rem;
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}
+
+.hero p {
+    font-size: 1.2rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.productos {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.grid-productos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    padding: 2rem 0;
+}
+
+.producto {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(236, 84, 14, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.producto:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(236, 84, 14, 0.25);
+}
+
+.producto img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.producto:hover img {
+    transform: scale(1.05);
+}
+
+.producto h3 {
+    padding: 1rem;
+    color: var(--primary-color);
+}
+
+.producto p {
+    padding: 0 1rem 1rem;
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    background-color: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 25px;
+    margin: 1rem;
+    transition: all 0.3s ease;
+    text-align: center;
+    font-weight: 500;
+}
+
+.btn:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-2px);
+}
+
+footer {
+    background-color: rgb(236, 84, 14);
+    color: rgb(255, 255, 255);
+    text-align: center;
+    padding: 1rem;
+    margin-top: 2rem;
+}
+
+/* Estilos base para móvil (hasta 480px) */
+@media (max-width: 480px) {
+    .hero h1 {
+        font-size: 1.8rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    .menu {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .menu a {
+        margin: 0;
+    }
+
+    .grid-productos {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+        gap: 1.5rem;
+    }
+
+    .producto {
+        max-width: 100%;
+    }
+
+    .logo {
+        height: 40px;
+        width: 40px;
+    }
+
+    .logo img {
+        height: 35px;
+    }
+
+    nav {
+        flex-direction: column;
+        padding: 0.5rem;
+        gap: 1rem;
+    }
+
+    main {
+        margin-top: 120px;
+    }
+}
+
+/* Estilos para tablets (481px - 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .grid-productos {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 1.5rem;
+        gap: 1.5rem;
+    }
+
+    nav {
+        padding: 1rem;
+    }
+
+    main {
+        margin-top: 100px;
+    }
+}
+
+/* Estilos para tablets grandes y laptops (769px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .grid-productos {
+        grid-template-columns: repeat(3, 1fr);
+        padding: 2rem;
+    }
+}
+
+/* Estilos para escritorio (1025px en adelante) */
+@media (min-width: 1025px) {
+    .grid-productos {
+        grid-template-columns: repeat(4, 1fr);
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+}
+
+/* Ajustes generales para mejorar la responsividad */
+.producto img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.producto:hover img {
+    transform: scale(1.05);
+}
+
+/* Ajustes de accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+        animation: none !important;
+    }
+}
+
+/* Mejoras para dispositivos táctiles */
+@media (hover: none) {
+    .producto:hover {
+        transform: none;
+    }
+
+    .btn:hover {
+        transform: none;
+    }
+}
