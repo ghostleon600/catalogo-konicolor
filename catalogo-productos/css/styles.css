@@ -1,24 +1,37 @@
+/* Variables */
 :root {
     --primary-color: rgb(236, 84, 14);
     --secondary-color: rgb(189, 67, 11);
     --background-color: #fff8f5;
-    --text-color: rgb(236, 84, 14);
+    --text-color: rgb(51, 51, 51);
     --accent-color: #ff945e;
+    --transition-speed: 0.3s;
 }
 
+/* Reset y estilos base */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* Estructura principal */
 body {
     font-family: 'Arial', sans-serif;
     line-height: 1.6;
     background-color: var(--background-color);
     color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
+main {
+    flex-grow: 1;
+    margin-top: 80px;
+}
+
+/* Header y Navegación */
 header {
     background-color: rgb(236, 84, 14);
     box-shadow: 0 2px 5px rgba(252, 249, 247, 0.1);
@@ -37,57 +50,59 @@ nav {
     align-items: center;
 }
 
-.menu a {
-    color: white;
-    text-decoration: none;
-    margin-left: 2rem;
-    transition: color 0.3s ease;
-    font-weight: 500;
-}
-
-.menu a:hover {
-    color: var(--background-color);
-}
-
+/* Logo */
 .logo {
     display: flex;
     align-items: center;
     height: 50px;
-    width: 50px;
+    width: auto;
 }
 
 .logo img {
-    height: 70px;
+    height: 100%;
     width: auto;
     display: block;
 }
 
-main {
-    margin-top: 80px;
+/* Menú de navegación */
+.menu a {
+    color: white;
+    text-decoration: none;
+    margin-left: 2rem;
+    transition: color var(--transition-speed) ease;
+    font-weight: 500;
+    padding: 0.5rem;
 }
 
+.menu a:hover,
+.menu a:focus {
+    color: var(--background-color);
+    outline: 2px solid var(--background-color);
+    border-radius: 4px;
+}
+
+/* Sección Hero */
 .hero {
     text-align: center;
     padding: 6rem 2rem;
-    background: rgb(189, 67, 11);
-    background-size: cover;
-    background-position: center;
+    background: var(--secondary-color);
     color: white;
     margin-bottom: 2rem;
 }
 
 .hero h1 {
-    font-size: 2.5rem;
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
     margin-bottom: 1.5rem;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
 }
 
 .hero p {
-    font-size: 1.2rem;
+    font-size: clamp(1rem, 2vw, 1.2rem);
     max-width: 800px;
     margin: 0 auto;
 }
 
+/* Grid de Productos */
 .productos {
     max-width: 1200px;
     margin: 2rem auto;
@@ -101,24 +116,24 @@ main {
     padding: 2rem 0;
 }
 
+/* Tarjetas de Producto */
 .producto {
     background: white;
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 3px 10px rgba(236, 84, 14, 0.15);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform var(--transition-speed) ease;
 }
 
 .producto:hover {
     transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(236, 84, 14, 0.25);
 }
 
 .producto img {
     width: 100%;
-    height: 200px;
+    aspect-ratio: 4/3;
     object-fit: cover;
-    transition: transform 0.3s ease;
+    transition: transform var(--transition-speed) ease;
 }
 
 .producto:hover img {
@@ -134,6 +149,7 @@ main {
     padding: 0 1rem 1rem;
 }
 
+/* Botones */
 .btn {
     display: inline-block;
     padding: 0.8rem 1.5rem;
@@ -142,32 +158,39 @@ main {
     text-decoration: none;
     border-radius: 25px;
     margin: 1rem;
-    transition: all 0.3s ease;
+    transition: transform var(--transition-speed) ease,
+                background-color var(--transition-speed) ease;
     text-align: center;
     font-weight: 500;
 }
 
-.btn:hover {
+.btn:hover,
+.btn:focus {
     background-color: var(--secondary-color);
     transform: translateY(-2px);
+    outline: none;
 }
 
+.btn:focus {
+    box-shadow: 0 0 0 3px rgba(236, 84, 14, 0.3);
+}
+
+/* Footer */
 footer {
     background-color: rgb(236, 84, 14);
-    color: rgb(255, 255, 255);
+    color: white;
     text-align: center;
     padding: 1rem;
     margin-top: 2rem;
 }
 
-/* Estilos base para móvil (hasta 480px) */
+/* Media Queries - Mobile First */
+/* Base (móvil) */
 @media (max-width: 480px) {
-    .hero h1 {
-        font-size: 1.8rem;
-    }
-
-    .hero p {
-        font-size: 1rem;
+    nav {
+        flex-direction: column;
+        padding: 0.5rem;
+        gap: 1rem;
     }
 
     .menu {
@@ -181,29 +204,8 @@ footer {
         margin: 0;
     }
 
-    .grid-productos {
-        grid-template-columns: 1fr;
-        padding: 1rem;
-        gap: 1.5rem;
-    }
-
-    .producto {
-        max-width: 100%;
-    }
-
     .logo {
         height: 40px;
-        width: 40px;
-    }
-
-    .logo img {
-        height: 35px;
-    }
-
-    nav {
-        flex-direction: column;
-        padding: 0.5rem;
-        gap: 1rem;
     }
 
     main {
@@ -211,41 +213,24 @@ footer {
     }
 }
 
-/* Estilos para tablets (481px - 768px) */
-@media (min-width: 481px) and (max-width: 768px) {
-    .hero h1 {
-        font-size: 2rem;
-    }
-
+/* Tablets */
+@media (min-width: 481px) {
     .grid-productos {
         grid-template-columns: repeat(2, 1fr);
-        padding: 1.5rem;
-        gap: 1.5rem;
-    }
-
-    nav {
-        padding: 1rem;
-    }
-
-    main {
-        margin-top: 100px;
     }
 }
 
-/* Estilos para tablets grandes y laptops (769px - 1024px) */
-@media (min-width: 769px) and (max-width: 1024px) {
+/* Laptops */
+@media (min-width: 769px) {
     .grid-productos {
         grid-template-columns: repeat(3, 1fr);
-        padding: 2rem;
     }
 }
 
-/* Estilos para escritorio (1025px en adelante) */
+/* Desktop */
 @media (min-width: 1025px) {
     .grid-productos {
         grid-template-columns: repeat(4, 1fr);
-        max-width: 1200px;
-        margin: 0 auto;
     }
 
     .container {
@@ -254,19 +239,7 @@ footer {
     }
 }
 
-/* Ajustes generales para mejorar la responsividad */
-.producto img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-}
-
-.producto:hover img {
-    transform: scale(1.05);
-}
-
-/* Ajustes de accesibilidad */
+/* Accesibilidad */
 @media (prefers-reduced-motion: reduce) {
     * {
         transition: none !important;
@@ -274,13 +247,17 @@ footer {
     }
 }
 
-/* Mejoras para dispositivos táctiles */
+/* Dispositivos táctiles */
 @media (hover: none) {
     .producto:hover {
         transform: none;
     }
 
     .btn:hover {
+        transform: none;
+    }
+
+    .producto:hover img {
         transform: none;
     }
 }
